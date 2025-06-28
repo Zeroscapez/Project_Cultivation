@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of the player movement
-    public float jumpSpeed = 2f; // Speed of the player jump
+    public float jumpSpeed = 7f; // Speed of the player jump
 
     private Rigidbody rb; // Reference to the Rigidbody component
     private Vector2 moveInput; // Input for movement
@@ -34,6 +34,22 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = rb.linearVelocity;
         velocity.x = moveInput.x * moveSpeed;
         rb.linearVelocity = velocity;
+
+        if (jumpAction.triggered)
+        {
+            Jump();
+        }
+
+       
+    }
+
+
+
+    void Jump()
+    {
+
+        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        //isGrounded = false; // Set grounded to false after jumping
 
     }
 }
