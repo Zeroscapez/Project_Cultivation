@@ -14,14 +14,31 @@ public class PlayerMovement : MonoBehaviour
 
     private InputAction moveAction;
     private InputAction jumpAction;
+    private InputSystem_Actions playerActions;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Awake()
+    {
+        playerActions = new InputSystem_Actions();
+        moveAction = playerActions.Player.Move;
+        jumpAction = playerActions.Player.Jump;
+
+    }
+
+    private void OnEnable()
+    {
+        playerActions.Enable();
+    }
+
     void Start()
     {
+        
+
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
-        moveAction = InputSystem.actions.FindAction("Player/Move");
-        jumpAction = InputSystem.actions.FindAction("Player/Jump");
+        
+        
         moveInput = moveAction.ReadValue<Vector2>();
 
     }
@@ -30,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        Debug.Log(moveInput);
+       
         Vector3 velocity = rb.linearVelocity;
         velocity.x = moveInput.x * moveSpeed;
         rb.linearVelocity = velocity;
@@ -40,7 +57,18 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-       
+        if(moveInput.x < 0)
+        {
+            // Flip the player sprite or model if moving left
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if(moveInput.x > 0)
+        {
+            // Flip the player sprite or model if moving right
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
+
     }
 
 
@@ -51,5 +79,10 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         //isGrounded = false; // Set grounded to false after jumping
 
+    }
+
+    void GroundCheck()
+    {
+       
     }
 }
