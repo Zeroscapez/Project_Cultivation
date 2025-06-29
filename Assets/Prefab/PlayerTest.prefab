@@ -147,9 +147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7593467856541675024, guid: 00e6bb8068e7c5245a73a085992c65a0, type: 3}
   fireOrigin: {fileID: 3954410967216460540}
-  projectileSpeed: 60
+  projectileSpeed: 40
   MouseResetTime: 6
+  pointerPrefab: {fileID: 3806166580130026306, guid: ff0a1296ef579d741b8344d1cc453be9, type: 3}
   pointer: {fileID: 0}
+  maxAimRadius: 5
 --- !u!1 &6151922852618255546
 GameObject:
   m_ObjectHideFlags: 0
