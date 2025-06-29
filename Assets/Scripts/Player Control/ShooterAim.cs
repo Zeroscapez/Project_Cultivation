@@ -15,10 +15,12 @@ public class ShooterAim : MonoBehaviour
 
     private Vector2 mouseLook;
     private Vector2 aimDirection;
+    
 
     public float MouseResetTime = 6f;
     private Vector2 MouseOrigin;
 
+    public GameObject pointerPrefab;
     public Transform pointer;
     public float maxAimRadius = 5f; // Maximum distance from the player to aim
 
@@ -26,6 +28,19 @@ public class ShooterAim : MonoBehaviour
     {
         playerActions = new InputSystem_Actions();
         MouseOrigin = Camera.main.WorldToScreenPoint(this.transform.position);
+    }
+
+    private void Start()
+    {
+       
+        pointer = Instantiate(pointerPrefab).transform;
+        pointer.position = this.transform.position; // Initialize pointer position
+        pointer.localScale = new Vector3(1f, 1f, 1f); // Set pointer scale
+        playerActions.Player.Enable();
+        mousePos = playerActions.Player.Aim;
+        shootAction = playerActions.Player.Attack;
+        mouseMove = playerActions.Player.Look;
+        MouseResetTime = 6f; // Initialize the reset timer
     }
 
     private void OnEnable()
