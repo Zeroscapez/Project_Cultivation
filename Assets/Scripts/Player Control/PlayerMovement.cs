@@ -68,7 +68,10 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-
+        if (playerActions.Player.Ability.triggered)
+        {
+            TimeStopManager.Instance.ToggleTimeStop();
+        }
     }
 
 

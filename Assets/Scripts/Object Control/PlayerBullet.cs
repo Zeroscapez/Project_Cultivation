@@ -10,6 +10,8 @@ public class PlayerBullet : MonoBehaviour
     {
         // Destroy the bullet after its lifetime expires
         Destroy(gameObject, lifetime);
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)

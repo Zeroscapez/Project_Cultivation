@@ -24,6 +24,10 @@ public class ShooterAim : MonoBehaviour
     public Transform pointer;
     public float maxAimRadius = 5f; // Maximum distance from the player to aim
 
+
+    public float fireRate = 0.25f; // Time between shots in seconds
+    private float lastFireTime;
+
     private void Awake()
     {
         playerActions = new InputSystem_Actions();
@@ -60,11 +64,13 @@ public class ShooterAim : MonoBehaviour
     {
         aimDirection = mousePos.ReadValue<Vector2>();
         mouseLook = mouseMove.ReadValue<Vector2>();
-        
 
-        if (shootAction.triggered)
+
+        if (shootAction.triggered && Time.time >= lastFireTime + fireRate)
         {
             Shoot();
+            lastFireTime = Time.time;
+            MouseResetTime = 6f;
         }
 
         if (mouseLook.x > 0 || mouseLook.x < 0) // If mouse is moved
