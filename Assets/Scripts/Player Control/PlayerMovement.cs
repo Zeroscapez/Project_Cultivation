@@ -41,9 +41,10 @@ public class PlayerMovement : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.constraints |= RigidbodyConstraints.FreezePositionZ; // Freeze Y position to prevent falling through the ground
 
-        
-        
+
+
         moveInput = moveAction.ReadValue<Vector2>();
 
     }
