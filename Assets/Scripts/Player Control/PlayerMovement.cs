@@ -10,12 +10,17 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb; // Reference to the Rigidbody component
     private Vector2 moveInput; // Input for movement
-    private bool isGrounded = true; // Check if the player is on the ground
+    [SerializeField] private bool isGrounded = false; // Check if the player is on the ground
 
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputSystem_Actions playerActions;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Ground Check Settings")]
+    public Transform groundCheckPoint;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
 
     private void Awake()
     {
@@ -32,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
 
+        
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
@@ -46,13 +51,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GroundCheck();
+
         moveInput = moveAction.ReadValue<Vector2>();
        
         Vector3 velocity = rb.linearVelocity;
         velocity.x = moveInput.x * moveSpeed;
         rb.linearVelocity = velocity;
 
-        if (jumpAction.triggered)
+        if (jumpAction.triggered && isGrounded)
         {
             Jump();
         }
@@ -86,6 +93,6 @@ public class PlayerMovement : MonoBehaviour
 
     void GroundCheck()
     {
-       
+        isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayer);
     }
 }

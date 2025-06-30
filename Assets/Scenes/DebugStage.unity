@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 1914194042}
   - component: {fileID: 1914194041}
   - component: {fileID: 1914194040}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 1990211672}
   - component: {fileID: 1990211671}
   - component: {fileID: 1990211673}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
