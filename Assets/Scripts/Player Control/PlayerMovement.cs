@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
+using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private InputAction moveAction;
     private InputAction jumpAction;
+    private InputAction interactAction;
     private InputSystem_Actions playerActions;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -31,10 +34,21 @@ public class PlayerMovement : MonoBehaviour
     public float rewindCooldown = 20f;
     private float lastRewindTime = Mathf.NegativeInfinity;
 
+    [Header("Time Stop Mechanic")]
+    public float timeStopDuration = 3f; // Duration of time stop
+    public float timeStopCooldown = 10f; // Cooldown for time stop ability
+    private float lastTimeStop = Mathf.NegativeInfinity;
+    private bool isTimeStopped = false;
+    private float timeStopEndTime;
+
     [Header("Rewind Ghost")]
     public GameObject rewindPrefab;
     public Transform rewindGhost; // Assign your ghost GameObject in Inspector
-    
+
+    [Header("Interaction Settings")]
+    public IInteractable currentInteractable;
+
+
 
 
 
@@ -50,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction = playerActions.Player.Move;
         jumpAction = playerActions.Player.Jump;
         rewindAction = playerActions.Player.Rewind;
+        interactAction = playerActions.Player.Interact;
 
     }
 
@@ -61,13 +76,13 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 
-       
 
-        rb = GetComponent<Rigidbody>();
+         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints |= RigidbodyConstraints.FreezePositionZ; // Freeze Y position to prevent falling through the ground
         moveInput = moveAction.ReadValue<Vector2>();
 
+        TimeStopManager.Instance.timeStopDuration = this.timeStopDuration;
         rewindGhost = Instantiate(rewindPrefab).transform; // Instantiate the rewind ghost prefab
     }
 
@@ -111,8 +126,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerActions.Player.Ability.triggered)
         {
-            TimeStopManager.Instance.ToggleTimeStop();
+          TimeStop();
+            Debug.Log("Time Stop Triggered");
         }
+
 
         if (rewindAction.triggered && Time.time >= lastRewindTime + rewindCooldown)
         {
@@ -120,7 +137,14 @@ public class PlayerMovement : MonoBehaviour
             lastRewindTime = Time.time;
         }
 
-        UpdateRewindGhost();
+        if (interactAction.triggered && currentInteractable != null)
+        {
+            currentInteractable.OnInteract();
+        }
+        
+       
+
+            UpdateRewindGhost();
       
 
         // Debug cooldown info
@@ -143,6 +167,23 @@ public class PlayerMovement : MonoBehaviour
     void GroundCheck()
     {
         isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundLayer);
+    }
+
+    void TimeStop()
+    {
+        if (isTimeStopped)
+        {
+            // Cancel time stop early
+            TimeStopManager.Instance.ToggleTimeStop();
+            isTimeStopped = false;
+            lastTimeStop = Time.time; // Start cooldown now
+        }
+        else if (Time.time >= lastTimeStop + timeStopCooldown)
+        {
+            TimeStopManager.Instance.ToggleTimeStop();
+            isTimeStopped = true;
+            timeStopEndTime = Time.time + TimeStopManager.Instance.timeStopDuration;
+        }
     }
 
     void Rewind()
@@ -183,6 +224,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rewindGhost.position = closest.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var interactable = other.GetComponent<IInteractable>();
+        Debug.Log("OnTriggerEnter called with " + other.name);
+        if (interactable != null)
+        {
+            currentInteractable = interactable;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var interactable = other.GetComponent<IInteractable>();
+        if (interactable != null && interactable == currentInteractable)
+        {
+            currentInteractable = null;
+        }
     }
 
 

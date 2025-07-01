@@ -45,6 +45,7 @@ public class ShooterAim : MonoBehaviour
         shootAction = playerActions.Player.Attack;
         mouseMove = playerActions.Player.Look;
         MouseResetTime = 6f; // Initialize the reset timer
+        lastFireTime = Time.time - fireRate;
     }
 
     private void OnEnable()
@@ -69,6 +70,7 @@ public class ShooterAim : MonoBehaviour
         if (shootAction.triggered && Time.time >= lastFireTime + fireRate)
         {
             Shoot();
+            Debug.Log("Shot Fired");
             lastFireTime = Time.time;
             MouseResetTime = 6f;
         }

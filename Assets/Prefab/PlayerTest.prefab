@@ -72,12 +72,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1443121510189049367}
   - component: {fileID: 4566926071574624689}
+  - component: {fileID: 8010350290590047552}
   - component: {fileID: 6985947878930201346}
   - component: {fileID: 1695602552588136377}
   - component: {fileID: 5466566197599590828}
   m_Layer: 0
   m_Name: PlayerTest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +126,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &8010350290590047552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5470824386126411128}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6985947878930201346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,7 +163,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -183,9 +205,10 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   rewindCooldown: 20
+  timeStopDuration: 3
+  timeStopCooldown: 3
   rewindPrefab: {fileID: 7310572973332413980, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
   rewindGhost: {fileID: 1325877522644248415, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
-  rewindLine: {fileID: 6575944363001984613, guid: 84a88e6a13b1932409323db63388f8c9, type: 3}
 --- !u!114 &5466566197599590828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +228,7 @@ MonoBehaviour:
   pointerPrefab: {fileID: 3806166580130026306, guid: ff0a1296ef579d741b8344d1cc453be9, type: 3}
   pointer: {fileID: 0}
   maxAimRadius: 5
-  fireRate: 3
+  fireRate: 0.5
 --- !u!1 &6151922852618255546
 GameObject:
   m_ObjectHideFlags: 0
