@@ -83,7 +83,7 @@ public class ShooterAim : MonoBehaviour
         else if(mouseLook.x == 0) // If mouse is not moved
         {
             MouseResetTime -= Time.deltaTime;
-            Debug.Log("Mouse Reset Time: " + MouseResetTime);
+          
 
             if(MouseResetTime <= 0 && mouseLook.x == 0)
             {
@@ -137,7 +137,7 @@ public class ShooterAim : MonoBehaviour
             this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        Debug.Log(mouseWorldPos);
+      
     }
 
 

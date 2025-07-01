@@ -1119,13 +1119,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695602552588136377, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
+      propertyPath: rewindLine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695602552588136377, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
+      propertyPath: rewindTrailParticles
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5470824386126411128, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
       propertyPath: m_Name
       value: PlayerTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 6985947878930201346, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
-      propertyPath: m_Constraints
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

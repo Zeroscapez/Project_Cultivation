@@ -1,6 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
+using UnityEngine;
 
 public class TimeStopManager : MonoBehaviour
 {
@@ -9,15 +8,17 @@ public class TimeStopManager : MonoBehaviour
     private List<ITimeStoppable> stoppables = new List<ITimeStoppable>();
     private bool isTimeStopped = false;
 
-    public float timeStopLength = 5f;
+    [Header("Time Stop Settings")]
+    public float timeStopDuration = 3f;
+    public float timeStopCooldown = 5f;
+    private float timeStopEndTime;
+    private float lastTimeStopTime;
 
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
         Instance = this;
     }
-
-
 
     public void Register(ITimeStoppable stoppable)
     {
@@ -27,21 +28,41 @@ public class TimeStopManager : MonoBehaviour
 
     public void Unregister(ITimeStoppable stoppable)
     {
-        if (stoppables.Contains(stoppable))
-            stoppables.Remove(stoppable);
+        stoppables.Remove(stoppable);
+    }
+
+    public void TryToggleTimeStop()
+    {
+        if (isTimeStopped || Time.time >= lastTimeStopTime + timeStopCooldown)
+        {
+            ToggleTimeStop();
+        }
+    }
+
+    private void Update()
+    {
+        if (isTimeStopped && Time.time >= timeStopEndTime)
+        {
+            ToggleTimeStop();
+        }
     }
 
     public void ToggleTimeStop()
     {
-        timeStopLength = 5f;
         isTimeStopped = !isTimeStopped;
 
         foreach (var obj in stoppables)
         {
-            if (isTimeStopped)
-                obj.OnTimeStop();
-            else
-                obj.OnTimeResume();
+            if (isTimeStopped) obj.OnTimeStop();
+            else obj.OnTimeResume();
+        }
+
+        if (isTimeStopped)
+        {
+            lastTimeStopTime = Time.time;
+            timeStopEndTime = Time.time + timeStopDuration;
         }
     }
+
+    public bool IsTimeStopped => isTimeStopped;
 }

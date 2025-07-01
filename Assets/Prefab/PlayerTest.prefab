@@ -150,7 +150,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &1695602552588136377
 MonoBehaviour:
@@ -172,6 +172,20 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  rewindTime: 5
+  rewindAction:
+    m_Name: Rewind
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 891a7e5c-2a77-4a47-8b91-d07214093d69
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rewindCooldown: 20
+  rewindPrefab: {fileID: 7310572973332413980, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
+  rewindGhost: {fileID: 1325877522644248415, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
+  rewindLine: {fileID: 6575944363001984613, guid: 84a88e6a13b1932409323db63388f8c9, type: 3}
 --- !u!114 &5466566197599590828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -410,4 +424,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316e9185d435c724cb797959a6bc4762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStopLength: 5
+  timeStopDuration: 3
+  timeStopCooldown: 5
