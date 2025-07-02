@@ -2188,7 +2188,7 @@ MonoBehaviour:
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
-  UpdateMethod: 2
+  UpdateMethod: 1
   BlendUpdateMethod: 1
   LensModeOverride:
     Enabled: 0
@@ -4943,10 +4943,6 @@ PrefabInstance:
     - target: {fileID: 1443121510189049367, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695602552588136377, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
-      propertyPath: jumpSpeed
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5470824386126411128, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
       propertyPath: m_Name

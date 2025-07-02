@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction interactAction;
+    private InputAction slowTimeAction;
     private InputSystem_Actions playerActions;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+ 
     [Header("Ground Check Settings")]
     public Transform groundCheckPoint;
     public float groundCheckRadius = 0.2f;
@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         jumpAction = playerActions.Player.Jump;
         rewindAction = playerActions.Player.Rewind;
         interactAction = playerActions.Player.Interact;
+        slowTimeAction = playerActions.Player.SlowDown;
 
     }
 
@@ -105,7 +106,8 @@ public class PlayerMovement : MonoBehaviour
         moveInput = moveAction.ReadValue<Vector2>();
        
         Vector3 velocity = rb.linearVelocity;
-        velocity.x = moveInput.x * moveSpeed;
+        velocity.x = moveInput.x * moveSpeed / Time.timeScale;
+
         rb.linearVelocity = velocity;
 
         if (jumpAction.triggered && isGrounded)
@@ -128,6 +130,11 @@ public class PlayerMovement : MonoBehaviour
         {
           TimeStop();
             Debug.Log("Time Stop Triggered");
+        }
+
+        if (slowTimeAction.triggered)
+        {
+            WorldSlowdownManager.Instance?.TriggerSlowdown();
         }
 
 
@@ -158,8 +165,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        if (WorldSlowdownManager.Instance.IsSlowing)
+        {
+            rb.AddForce(Vector3.up * jumpSpeed * Time.deltaTime, ForceMode.Impulse);
 
-        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+
+            Debug.Log(jumpSpeed/ Time.timeScale + " Jump Speed with Slowdown");
+        }
+        else
+        {
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        }
+
+            
+
+
+
         //isGrounded = false; // Set grounded to false after jumping
 
     }

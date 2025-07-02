@@ -28,6 +28,10 @@ public class ShooterAim : MonoBehaviour
     public float fireRate = 0.25f; // Time between shots in seconds
     private float lastFireTime;
 
+    public Transform armTransform; // Reference to the player's arm transform
+    public bool flipWithPlayer = true; // Whether to flip the pointer based on player direction
+
+
     private void Awake()
     {
         playerActions = new InputSystem_Actions();
@@ -40,6 +44,7 @@ public class ShooterAim : MonoBehaviour
         pointer = Instantiate(pointerPrefab).transform;
         pointer.position = this.transform.position; // Initialize pointer position
         pointer.localScale = new Vector3(1f, 1f, 1f); // Set pointer scale
+        pointer.SetParent(this.transform); // Set pointer as a child of the player
         playerActions.Player.Enable();
         mousePos = playerActions.Player.Aim;
         shootAction = playerActions.Player.Attack;
@@ -129,6 +134,10 @@ public class ShooterAim : MonoBehaviour
          new Vector3(aimDirection.x, aimDirection.y, Camera.main.transform.position.z * -1f)
      );
 
+       
+
+        
+
 
         if (mouseWorldPos.x < this.transform.position.x)
         {
@@ -139,7 +148,7 @@ public class ShooterAim : MonoBehaviour
             this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-      
+       
     }
 
 
@@ -151,14 +160,27 @@ public class ShooterAim : MonoBehaviour
 
         worldPos.z = 0; // Lock it to the same plane as the player
 
+        
+
+        Vector3 direction = worldPos - armTransform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+
         Vector3 fromPlayerToMouse = worldPos - transform.position;
 
-        if (fromPlayerToMouse.magnitude > maxAimRadius)
+        // Always set reticle at exact max radius, in the direction of the cursor
+        Vector3 fixedDistanceDirection = fromPlayerToMouse.normalized * maxAimRadius;
+
+        pointer.position = transform.position + fixedDistanceDirection;
+
+
+
+
+        if (transform.localScale.x < 0)
         {
-            fromPlayerToMouse = fromPlayerToMouse.normalized * maxAimRadius;
+            angle += 180f;
         }
 
-        Vector3 clampedWorldPos = transform.position + fromPlayerToMouse;
-        pointer.position = clampedWorldPos;
+        armTransform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
