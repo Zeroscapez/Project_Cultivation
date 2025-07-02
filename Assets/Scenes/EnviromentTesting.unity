@@ -10543,7 +10543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpSpeed: 2
+  jumpSpeed: 11
 --- !u!1 &1578513256
 GameObject:
   m_ObjectHideFlags: 0
@@ -12459,7 +12459,7 @@ Transform:
   m_GameObject: {fileID: 1843469659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.59, z: 0}
   m_LocalScale: {x: 175, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14427,7 +14427,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1564712901}
-  - {fileID: 1235713117}
   - {fileID: 602470962}
+  - {fileID: 1235713117}
   - {fileID: 873715905}
   - {fileID: 1395246206}
