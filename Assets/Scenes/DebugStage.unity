@@ -1941,10 +1941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d64d4eeec415b4c85b2a90b58ea89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upPosition: {fileID: 489023153}
-  downPosition: {fileID: 7056952}
-  moveSpeed: 77
-  waitTime: 0
+  interval: 1
 --- !u!1001 &8811763751543876621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2000,31 +1997,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9064046306251740376, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8811763751543876623}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
---- !u!1 &8811763751543876622 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9064046306251740376, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
-  m_PrefabInstance: {fileID: 8811763751543876621}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8811763751543876623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8811763751543876622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813bc748d747db04987bfb2f64c9209b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slowFactor: 0.2
-  slowdownLength: 3
-  cooldown: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

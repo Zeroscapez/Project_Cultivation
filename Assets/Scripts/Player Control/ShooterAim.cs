@@ -27,6 +27,8 @@ public class ShooterAim : MonoBehaviour
 
     public float fireRate = 0.25f; // Time between shots in seconds
     private float lastFireTime;
+    public AudioSource audioSource; // Audio source for playing sound effects
+    public AudioClip shootSFX; // Sound effect for shooting
 
     public Transform armTransform; // Reference to the player's arm transform
     public bool flipWithPlayer = true; // Whether to flip the pointer based on player direction
@@ -111,6 +113,7 @@ public class ShooterAim : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(aimDirection);
         Plane shootPlane = new Plane(Vector3.forward, 0); // Adjust to match your character plane
+        audioSource.PlayOneShot(shootSFX); // Play shooting sound effect
 
         if (shootPlane.Raycast(ray, out float enter))
         {
