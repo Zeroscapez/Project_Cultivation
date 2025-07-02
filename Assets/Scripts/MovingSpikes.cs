@@ -2,40 +2,41 @@ using UnityEngine;
 
 public class MovingSpikes : MonoBehaviour
 {
-    public Transform upPosition;
-    public Transform downPosition;
 
-    public float moveSpeed = 2f;
-    public float waitTime = 1f;
+    public float interval = 1f;
 
-    private Transform targetPosition;
-    private float waitTimer = 0f;
-    private bool isWaiting = false;
+    private float timer;
+    private bool isSpikeUp = false;
 
+    private GameObject spikesUP;
+
+
+    private void Awake()
+    {
+        spikesUP = transform.GetChild(0).gameObject; // Assuming the spikes are the first child of this GameObject
+    }
     void Start()
     {
-        targetPosition = upPosition;
+        // Automatically find the first child as the spike object
+        if (transform.childCount > 0)
+        {
+            spikesUP = transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            Debug.LogWarning("No child object found for spikesUP!");
+        }
     }
 
     void Update()
     {
-        if (isWaiting)
-        {
-            waitTimer += Time.deltaTime;
-            if (waitTimer >= waitTime)
-            {
-                waitTimer = 0f;
-                isWaiting = false;
-                targetPosition = (targetPosition == upPosition) ? downPosition : upPosition;
-            }
-            return;
-        }
+        timer += Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, targetPosition.position) < 0.01f)
+        if (timer >= interval)
         {
-            isWaiting = true;
+            timer = 0f;
+            isSpikeUp = !isSpikeUp;
+            spikesUP.SetActive(isSpikeUp);
         }
     }
 
