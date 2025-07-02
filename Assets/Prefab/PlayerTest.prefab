@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1443121510189049367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4490285678127051860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3557410123600657314}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3557410123600657314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490285678127051860}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.005, y: -0.856, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1443121510189049367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5470824386126411128
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,12 +72,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1443121510189049367}
   - component: {fileID: 4566926071574624689}
+  - component: {fileID: 8010350290590047552}
   - component: {fileID: 6985947878930201346}
   - component: {fileID: 1695602552588136377}
   - component: {fileID: 5466566197599590828}
   m_Layer: 0
   m_Name: PlayerTest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +98,7 @@ Transform:
   m_Children:
   - {fileID: 8328332280937726066}
   - {fileID: 3954410967216460540}
+  - {fileID: 3557410123600657314}
   - {fileID: 6746791228215140067}
   - {fileID: 1577097587400315650}
   m_Father: {fileID: 0}
@@ -93,6 +126,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &8010350290590047552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5470824386126411128}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6985947878930201346
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,7 +163,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -118,7 +172,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!114 &1695602552588136377
 MonoBehaviour:
@@ -134,6 +188,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpSpeed: 2
+  isGrounded: 0
+  groundCheckPoint: {fileID: 3557410123600657314}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  rewindTime: 5
+  rewindAction:
+    m_Name: Rewind
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 891a7e5c-2a77-4a47-8b91-d07214093d69
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rewindCooldown: 20
+  timeStopDuration: 3
+  timeStopCooldown: 3
+  rewindPrefab: {fileID: 7310572973332413980, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
+  rewindGhost: {fileID: 1325877522644248415, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
 --- !u!114 &5466566197599590828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +228,7 @@ MonoBehaviour:
   pointerPrefab: {fileID: 3806166580130026306, guid: ff0a1296ef579d741b8344d1cc453be9, type: 3}
   pointer: {fileID: 0}
   maxAimRadius: 5
-  fireRate: 3
+  fireRate: 0.5
 --- !u!1 &6151922852618255546
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +391,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -372,4 +447,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316e9185d435c724cb797959a6bc4762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStopLength: 5
+  timeStopDuration: 3
+  timeStopCooldown: 5

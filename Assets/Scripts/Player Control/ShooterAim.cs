@@ -45,6 +45,7 @@ public class ShooterAim : MonoBehaviour
         shootAction = playerActions.Player.Attack;
         mouseMove = playerActions.Player.Look;
         MouseResetTime = 6f; // Initialize the reset timer
+        lastFireTime = Time.time - fireRate;
     }
 
     private void OnEnable()
@@ -69,6 +70,7 @@ public class ShooterAim : MonoBehaviour
         if (shootAction.triggered && Time.time >= lastFireTime + fireRate)
         {
             Shoot();
+            Debug.Log("Shot Fired");
             lastFireTime = Time.time;
             MouseResetTime = 6f;
         }
@@ -83,7 +85,7 @@ public class ShooterAim : MonoBehaviour
         else if(mouseLook.x == 0) // If mouse is not moved
         {
             MouseResetTime -= Time.deltaTime;
-            Debug.Log("Mouse Reset Time: " + MouseResetTime);
+          
 
             if(MouseResetTime <= 0 && mouseLook.x == 0)
             {
@@ -137,7 +139,7 @@ public class ShooterAim : MonoBehaviour
             this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        Debug.Log(mouseWorldPos);
+      
     }
 
 
