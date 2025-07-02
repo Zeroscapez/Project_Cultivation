@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PAttack
   - Enemy
+  - PitBalls
   layers:
   - Default
   - TransparentFX
