@@ -165,17 +165,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if (WorldSlowdownManager.Instance.IsSlowing)
-        {
-            rb.AddForce(Vector3.up * jumpSpeed * Time.deltaTime, ForceMode.Impulse);
+        
+        
 
 
-            Debug.Log(jumpSpeed/ Time.timeScale + " Jump Speed with Slowdown");
-        }
-        else
-        {
+       
+        
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-        }
+        
 
             
 
