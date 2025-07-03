@@ -4,7 +4,7 @@ using UnityEngine.ResourceManagement.Profiling;
 public class PlayerBullet : MonoBehaviour
 {
     public float lifetime = 5f; // Lifetime of the bullet in seconds
-    private float damage = 10f; // Damage dealt by the bullet
+   // private float damage = 10f; // Damage dealt by the bullet
 
     void Start()
     {

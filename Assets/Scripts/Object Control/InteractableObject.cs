@@ -6,6 +6,8 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
     private Material originalMaterial;
     public Material highlightMaterial;
     public Material activatedMaterial;
+    public GameObject interactIcon;
+    
 
     private Renderer objectRenderer;
     private bool isPlayerNearby = false;

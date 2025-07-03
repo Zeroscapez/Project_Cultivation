@@ -358,12 +358,13 @@ MonoBehaviour:
   MouseResetTime: 6
   pointerPrefab: {fileID: 3806166580130026306, guid: ff0a1296ef579d741b8344d1cc453be9, type: 3}
   pointer: {fileID: 0}
-  maxAimRadius: 5
+  maxAimRadius: 3
   fireRate: 0.5
   audioSource: {fileID: 4378021352210660534}
   shootSFX: {fileID: 8300000, guid: b7b4ac18ae1b03041984542577630a8d, type: 3}
   armTransform: {fileID: 5890273512651024558}
   flipWithPlayer: 1
+  reloading: 0
 --- !u!1 &6151922852618255546
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +602,7 @@ MonoBehaviour:
   slowFactor: 0.2
   slowdownLength: 3
   cooldown: 5
+  lastSlowTime: -Infinity
 --- !u!114 &855098929059792377
 MonoBehaviour:
   m_ObjectHideFlags: 0

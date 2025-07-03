@@ -23,6 +23,14 @@ public class DoorSwitchTouch : InteractableObject, ISwitch
                 objectRenderera.material = activatedMaterial;
             }
 
+            if (interactIcon != null)
+            {
+                interactIcon.SetActive(false);
+            }
+                
+           
+
+
             linkedDoor.NotifySwitchActivated();
         }
     }
