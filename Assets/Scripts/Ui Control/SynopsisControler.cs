@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SynopsisControler : MonoBehaviour
@@ -13,7 +14,10 @@ public class SynopsisControler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         UIControl = new InputSystem_Actions();
+        UIControl.UI.Enable();
+        UIControl.Player.Disable();
         confirmAction = UIControl.UI.Confirm;
     }
 
@@ -22,7 +26,7 @@ public class SynopsisControler : MonoBehaviour
     {
         if (confirmAction.triggered)
         {
-            Debug.Log("Pressed left-click.");
+            SceneManager.LoadScene("Level 1",LoadSceneMode.Single);  
         }
 
     }

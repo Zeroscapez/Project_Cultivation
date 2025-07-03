@@ -196,11 +196,13 @@ public class UIController : MonoBehaviour
 
     public void GameEnd()
     {
+        UIControl.Player.Disable();
         Application.Quit();
     }
 
     public void GoTitle()
     {
+        UIControl.Player.Disable();
         SceneManager.LoadScene("TitleScreen");
     }
 
