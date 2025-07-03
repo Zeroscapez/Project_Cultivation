@@ -90,15 +90,16 @@ public class UIController : MonoBehaviour
 
     public void TakeDamage(float damage)        // Drops health value when taking damage
     {
-        damage *= 0.001f;
+        damage *= 0.1f;
 
         if (health > 0)
         {
             health -= damage;
+            Debug.Log("Health: " + health);
             Debug.Log(damage);
         }
 
-        if (health == 0)
+        if (health <= 0)
         {
             GameOver();
         }

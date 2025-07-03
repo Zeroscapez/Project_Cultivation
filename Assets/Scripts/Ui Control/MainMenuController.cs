@@ -32,12 +32,12 @@ public class MainMenuController : MonoBehaviour
         controlsScreen.SetActive(false);
     }
 
-    public void GoSynopsis()
-    {
-        titleScreen.SetActive(false);
-        synopsisScreen.SetActive(true);
-        controlsScreen.SetActive(false);
-    }
+    //public void GoSynopsis()
+    //{
+    //    titleScreen.SetActive(false);
+    //    synopsisScreen.SetActive(true);
+    //    controlsScreen.SetActive(false);
+    //}
 
     public void GoControls()
     {
