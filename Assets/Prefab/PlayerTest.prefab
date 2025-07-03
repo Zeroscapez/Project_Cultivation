@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6060165865626913996}
   - component: {fileID: 4378021352210660534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3954410967216460540}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3557410123600657314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 6985947878930201346}
   - component: {fileID: 1695602552588136377}
   - component: {fileID: 5466566197599590828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerTest
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6746791228215140067}
   - component: {fileID: 1612484775682790086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Direction Arrow (Delte Later)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8328332280937726066}
   - component: {fileID: 4993924410934084943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,8 +548,7 @@ GameObject:
   - component: {fileID: 1577097587400315650}
   - component: {fileID: 6040497499706889102}
   - component: {fileID: 7076751477975833756}
-  - component: {fileID: 3889861506983178087}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,21 +585,6 @@ MonoBehaviour:
   timeStopDuration: 3
   timeStopCooldown: 5
 --- !u!114 &7076751477975833756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9064046306251740376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813bc748d747db04987bfb2f64c9209b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slowFactor: 0.2
-  slowdownLength: 3
-  cooldown: 5
---- !u!114 &3889861506983178087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -655,6 +639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Characters
       objectReference: {fileID: 0}
+    - target: {fileID: 4969115975554790951, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5422164957749004642, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -674,6 +662,10 @@ PrefabInstance:
     - target: {fileID: 5422164957749004642, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322867449102136300, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8099958824179418697, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
       propertyPath: m_LocalScale.x
@@ -726,6 +718,10 @@ PrefabInstance:
     - target: {fileID: 8099958824179418697, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611389830135447259, guid: 07fb2458740253246a30d46eb3fc4d3f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -22,8 +22,9 @@ public class DeathPit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.transform.position = startPoint.position;
-
+            Vector3 respawnPosition = startPoint.position;
+            respawnPosition.z = -0.22f;
+            other.gameObject.transform.position = respawnPosition;
         }
 
         if (other.gameObject.CompareTag("PitBalls"))

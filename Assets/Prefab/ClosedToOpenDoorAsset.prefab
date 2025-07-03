@@ -186,9 +186,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: OpenDoorAsset
       objectReference: {fileID: 0}
+    - target: {fileID: 6586672556150508499, guid: e4a7d013fab9e1841b04dad05faaf8bd, type: 3}
+      propertyPath: doorControl
+      value: 
+      objectReference: {fileID: 7945704162468076265}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7160756692852942719, guid: e4a7d013fab9e1841b04dad05faaf8bd, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a7d013fab9e1841b04dad05faaf8bd, type: 3}

@@ -5,6 +5,7 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
 {
     private Material originalMaterial;
     public Material highlightMaterial;
+    public Material activatedMaterial;
 
     private Renderer objectRenderer;
     private bool isPlayerNearby = false;
@@ -31,7 +32,7 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
                 objectRenderer.material = highlightMaterial;
             }
 
-            Debug.Log("Player entered interaction range of " + gameObject.name);
+           // Debug.Log("Player entered interaction range of " + gameObject.name);
         }
     }
 
@@ -45,7 +46,7 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
                 objectRenderer.material = originalMaterial;
             }
 
-            Debug.Log("Player exited interaction range of " + gameObject.name);
+           // Debug.Log("Player exited interaction range of " + gameObject.name);
         }
     }
 }

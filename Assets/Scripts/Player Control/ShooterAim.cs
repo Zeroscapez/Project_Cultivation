@@ -77,7 +77,7 @@ public class ShooterAim : MonoBehaviour
         if (shootAction.triggered && Time.time >= lastFireTime + fireRate)
         {
             Shoot();
-            Debug.Log("Shot Fired");
+           // Debug.Log("Shot Fired");
             lastFireTime = Time.time;
             MouseResetTime = 6f;
         }
@@ -99,7 +99,7 @@ public class ShooterAim : MonoBehaviour
                 MouseResetTime = 6f;
                 aimDirection = MouseOrigin;
                 UpdateCursorPosition();
-                Debug.Log("Mouse Reset to Origin");
+               // Debug.Log("Mouse Reset to Origin");
             }
 
         }

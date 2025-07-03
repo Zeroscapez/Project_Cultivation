@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Debug cooldown info
         float rewindCooldownRemaining = Mathf.Max(0, (lastRewindTime + rewindCooldown) - Time.time);
-        Debug.Log($"[Rewind Cooldown] Remaining: {rewindCooldownRemaining:F2}s");
+        //Debug.Log($"[Rewind Cooldown] Remaining: {rewindCooldownRemaining:F2}s");
 
     }
 
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var interactable = other.GetComponent<IInteractable>();
-        Debug.Log("OnTriggerEnter called with " + other.name);
+       // Debug.Log("OnTriggerEnter called with " + other.name);
         if (interactable != null)
         {
             currentInteractable = interactable;

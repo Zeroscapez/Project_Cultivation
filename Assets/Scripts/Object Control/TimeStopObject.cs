@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TimeStopObject : MonoBehaviour, ITimeStoppable
 {
-    private Rigidbody rb;
+    public Rigidbody rb;
    // private Animator animator;
     private Vector3 savedVelocity;
     [SerializeField] private bool isStopped = false;

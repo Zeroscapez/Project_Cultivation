@@ -8,6 +8,8 @@ public class DoorControl : MonoBehaviour
     public MonoBehaviour[] switchSources; // Drag all switches here
     private ISwitch[] switches;
     private bool isOpen = false;
+    public bool IsOpen => isOpen;
+
 
     void Awake()
     {
@@ -35,7 +37,7 @@ public class DoorControl : MonoBehaviour
     private void OpenDoor()
     {
         isOpen = true;
-        Debug.Log("Door opens — all switches activated.");
+        //Debug.Log("Door opens — all switches activated.");
         // Add animation, deactivate, or enable logic here
         gameObject.SetActive(false);
     }

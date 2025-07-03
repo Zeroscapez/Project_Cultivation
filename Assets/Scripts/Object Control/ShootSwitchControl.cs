@@ -47,7 +47,7 @@ public abstract class ShootSwitchControl : MonoBehaviour, ITarget
                     objectRenderer.material = strikeMaterial;
                 }
 
-                Debug.Log("Object Hit with Bullet - " + gameObject.name);
+               // Debug.Log("Object Hit with Bullet - " + gameObject.name);
 
                 if (linkedDoor != null)
                 {

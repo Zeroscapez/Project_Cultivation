@@ -11,6 +11,6 @@ public class DoorSwitchShoot : ShootSwitchControl, ISwitch
 
     public override void OnHit()
     {
-        Debug.Log("Door Switch Shot");
+       // Debug.Log("Door Switch Shot");
     }
 }
