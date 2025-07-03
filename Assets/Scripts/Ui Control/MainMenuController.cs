@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 
 public class MainMenuController : MonoBehaviour
@@ -11,12 +12,15 @@ public class MainMenuController : MonoBehaviour
     public GameObject controlsScreen;
 
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         titleScreen.SetActive(true);
         synopsisScreen.SetActive(false);
         controlsScreen.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -25,10 +29,15 @@ public class MainMenuController : MonoBehaviour
         
     }
 
-    public void GoSynopsis()
+    public void GameEnd()
     {
-        titleScreen.SetActive(false);
-        synopsisScreen.SetActive(true);
+        Application.Quit();
+    }
+
+    public void GoTitle()
+    {
+        titleScreen.SetActive(true);
+        synopsisScreen.SetActive(false);
         controlsScreen.SetActive(false);
     }
 

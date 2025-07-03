@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -187,4 +188,16 @@ public class UIController : MonoBehaviour
         restrictFastForward.SetActive(true);
         //ff off
     }
+
+
+    public void GameEnd()
+    {
+        Application.Quit();
+    }
+
+    public void GoTitle()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
+
 }
