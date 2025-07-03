@@ -18,6 +18,9 @@ public class UIController : MonoBehaviour
 
     public Image hpBar;
     public TextMeshProUGUI ammoCount;
+    public TextMeshProUGUI rewindCooldown;
+    public TextMeshProUGUI pauseCooldown;
+    public TextMeshProUGUI fastForwardCooldown;
     public GameObject restrictRewind;
     public GameObject restrictPause;
     public GameObject restrictFastForward;

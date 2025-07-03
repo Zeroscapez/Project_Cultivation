@@ -9,9 +9,21 @@ public class WorldSlowdownManager : MonoBehaviour
     public float cooldown = 5f;
 
     private float slowEndTime;
-    private float lastSlowTime = Mathf.NegativeInfinity;
+    public float lastSlowTime = Mathf.NegativeInfinity;
     private bool isSlowing = false;
 
+    public float CooldownRemaining
+    {
+        get
+        {
+            // Only start tracking cooldown *after* slow ends
+            if (isSlowing) return cooldown;
+
+            float cooldownEnd = lastSlowTime + cooldown;
+            float remaining = cooldownEnd - Time.unscaledTime;
+            return Mathf.Max(0f, remaining);
+        }
+    }
     void Awake()
     {
         if (Instance != null) Destroy(gameObject);
@@ -25,8 +37,12 @@ public class WorldSlowdownManager : MonoBehaviour
             ResetTime();
         }
 
-        UIController.Instance.restrictFastForward.SetActive(isSlowing);
+        UIController.Instance.restrictFastForward.SetActive(isSlowing || CooldownRemaining > 0);
+
+
     }
+
+
 
     public void TriggerSlowdown()
     {
@@ -36,16 +52,18 @@ public class WorldSlowdownManager : MonoBehaviour
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
         slowEndTime = Time.unscaledTime + slowdownLength;
-        lastSlowTime = Time.unscaledTime;
         isSlowing = true;
     }
+
 
     private void ResetTime()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
         isSlowing = false;
+        lastSlowTime = Time.unscaledTime; 
     }
+
 
     public bool IsSlowing => isSlowing;
 }
