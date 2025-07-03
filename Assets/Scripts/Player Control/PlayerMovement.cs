@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UIController.Instance.rewindCooldown.text = (Mathf.Max(0, (lastRewindTime + rewindCooldown) - Time.time)).ToString("F0");
-        UIController.Instance.pauseCooldown.text = (Mathf.Max(0, (lastTimeStop + timeStopCooldown) - Time.time)).ToString("F0");
+        UIController.Instance.pauseCooldown.text = (TimeStopManager.Instance.CooldownRemaining).ToString("F0");
         UIController.Instance.fastForwardCooldown.text = (WorldSlowdownManager.Instance.CooldownRemaining).ToString("F0");
 
 

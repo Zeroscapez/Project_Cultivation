@@ -12,12 +12,22 @@ public class TimeStopManager : MonoBehaviour
     public float timeStopDuration = 3f;
     public float timeStopCooldown = 5f;
     private float timeStopEndTime;
-    private float lastTimeStopTime;
+    private float lastTimeStopTime = Mathf.NegativeInfinity;
 
+    public float CooldownRemaining
+    {
+        get
+        {
+            if (isTimeStopped) return timeStopCooldown;
+            float cooldownEnd = lastTimeStopTime + timeStopCooldown;
+            return Mathf.Max(0f, cooldownEnd - Time.time);
+        }
+    }
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
         Instance = this;
+       
     }
 
     public void Register(ITimeStoppable stoppable)
@@ -33,7 +43,7 @@ public class TimeStopManager : MonoBehaviour
 
     public void TryToggleTimeStop()
     {
-        if (isTimeStopped || Time.time >= lastTimeStopTime + timeStopCooldown)
+        if (isTimeStopped || CooldownRemaining <= 0f)
         {
             ToggleTimeStop();
         }
@@ -44,18 +54,18 @@ public class TimeStopManager : MonoBehaviour
         if (isTimeStopped && Time.time >= timeStopEndTime)
         {
             ToggleTimeStop();
-            if (!isTimeStopped)
-            {
-                UIController.Instance.EnablePause();
-            }
+           
            
         }
+
+        UIController.Instance.restrictPause.SetActive(isTimeStopped || CooldownRemaining > 0);
     }
 
     public void ToggleTimeStop()
     {
         isTimeStopped = !isTimeStopped;
-        UIController.Instance.EnablePause();
+        
+
         foreach (var obj in stoppables)
         {
             if (isTimeStopped) obj.OnTimeStop();
@@ -64,10 +74,17 @@ public class TimeStopManager : MonoBehaviour
 
         if (isTimeStopped)
         {
-            lastTimeStopTime = Time.time;
             timeStopEndTime = Time.time + timeStopDuration;
         }
+        else
+        {
+            lastTimeStopTime = Time.time; // cooldown starts when time resumes
+        }
     }
+
+  
+
+
 
     public bool IsTimeStopped => isTimeStopped;
 }
