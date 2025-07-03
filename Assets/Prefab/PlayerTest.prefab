@@ -339,6 +339,7 @@ MonoBehaviour:
   timeStopCooldown: 3
   rewindPrefab: {fileID: 2002238153734791400, guid: 09a804982292f764bb61ad7650654492, type: 3}
   rewindGhost: {fileID: 1325877522644248415, guid: 2c7ecdfc72c90ec4cbeda12b3addeace, type: 3}
+  testUI: {fileID: 0}
 --- !u!114 &5466566197599590828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +549,7 @@ GameObject:
   - component: {fileID: 1577097587400315650}
   - component: {fileID: 6040497499706889102}
   - component: {fileID: 7076751477975833756}
+  - component: {fileID: 855098929059792377}
   m_Layer: 8
   m_Name: GameManager
   m_TagString: Untagged
@@ -599,6 +601,18 @@ MonoBehaviour:
   slowFactor: 0.2
   slowdownLength: 3
   cooldown: 5
+--- !u!114 &855098929059792377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064046306251740376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e674c9badca331a4f9af0c0826abaf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1909828333416718796
 PrefabInstance:
   m_ObjectHideFlags: 0

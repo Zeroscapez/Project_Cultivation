@@ -44,13 +44,18 @@ public class TimeStopManager : MonoBehaviour
         if (isTimeStopped && Time.time >= timeStopEndTime)
         {
             ToggleTimeStop();
+            if (!isTimeStopped)
+            {
+                UIController.Instance.EnablePause();
+            }
+           
         }
     }
 
     public void ToggleTimeStop()
     {
         isTimeStopped = !isTimeStopped;
-
+        UIController.Instance.EnablePause();
         foreach (var obj in stoppables)
         {
             if (isTimeStopped) obj.OnTimeStop();

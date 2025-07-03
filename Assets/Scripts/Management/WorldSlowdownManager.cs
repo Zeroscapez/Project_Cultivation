@@ -24,6 +24,8 @@ public class WorldSlowdownManager : MonoBehaviour
         {
             ResetTime();
         }
+
+        UIController.Instance.restrictFastForward.SetActive(isSlowing);
     }
 
     public void TriggerSlowdown()

@@ -4,6 +4,7 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController Instance { get; private set; }
 
     public float health;
     public float maxHealth;
@@ -13,6 +14,7 @@ public class UIController : MonoBehaviour
     public bool canRewind;
     public bool canPause;
     public bool canFastFoward;
+   
 
     public Image hpBar;
     public TextMeshProUGUI ammoCount;
@@ -20,7 +22,29 @@ public class UIController : MonoBehaviour
     public GameObject restrictPause;
     public GameObject restrictFastForward;
     public GameObject pauseMenu;
+    public InputSystem_Actions UIControl;
+    public InputSystem_Actions PlayerControl;
 
+    public static bool IsPaused { get; private set; } = false;
+
+
+    void Awake()
+    {
+
+        // Singleton pattern to ensure only one instance of UIController exists
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Optional: Keep this object across scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+        }
+        // Initialize the Input System Actions
+        UIControl = new InputSystem_Actions();
+        UIControl.UI.Disable();
+    }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +58,8 @@ public class UIController : MonoBehaviour
         restrictRewind.SetActive(false);
         restrictPause.SetActive(false);
         restrictFastForward.SetActive(false);
+       
+
     }
 
     // Update is called once per frame
@@ -67,6 +93,7 @@ public class UIController : MonoBehaviour
         if (health > 0)
         {
             health -= damage;
+            Debug.Log(damage);
         }
 
         if (health == 0)
@@ -111,39 +138,41 @@ public class UIController : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
+        Debug.Log("Pause Game Triggered");
+
+        if (IsPaused)
+        {
+            IsPaused = false;
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            
+        }
+        else
+        {
+            IsPaused = true;
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            
+        }
+
+            
     }
 
-    public void UnpauseGame()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-    }
-
-    public void EnableRewind()
-    {
-        restrictRewind.SetActive(false);
-        //rewind on
-    }
-
-    public void DisableRewind()
-    {
-        restrictRewind.SetActive(true);
-        //rewind off
-    }
 
     public void EnablePause()
     {
-        restrictPause.SetActive(false);
-        //pause on
+  
+        if (TimeStopManager.Instance.IsTimeStopped)
+        {
+            restrictPause.SetActive(true);
+        }
+        else
+        {
+            restrictPause.SetActive(false);
+            //pause on
+        }
     }
 
-    public void DisablePause()
-    {
-        restrictPause.SetActive(true);
-        //pause off
-    }
 
     public void EnableFastForward()
     {

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f; // Speed of the player movement
     public float jumpSpeed = 7f; // Speed of the player jump
 
+
+
     private Rigidbody rb; // Reference to the Rigidbody component
     private Vector2 moveInput; // Input for movement
     [SerializeField] private bool isGrounded = false; // Check if the player is on the ground
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Interaction Settings")]
     public IInteractable currentInteractable;
-
+    public UIController testUI;
 
 
 
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         rewindAction = playerActions.Player.Rewind;
         interactAction = playerActions.Player.Interact;
         slowTimeAction = playerActions.Player.SlowDown;
-
+        
     }
 
     private void OnEnable()
@@ -90,6 +92,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (UIController.IsPaused) {
+
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            
+
+            if (playerActions.Player.Pause.triggered)
+            {
+                Debug.Log("Pause Game Triggered");
+
+                if (UIController.Instance != null)
+                {
+                    UIController.Instance.PauseGame();
+                }
+                else
+                {
+                    Debug.LogWarning("UIController instance not found!");
+                }
+
+
+            }
+
+            return;
+        }
 
         // Record current position with timestamp
         positionHistory.Add(new PositionRecord
@@ -128,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerActions.Player.Ability.triggered)
         {
-          TimeStop();
+            TimeStop();
             Debug.Log("Time Stop Triggered");
         }
 
@@ -141,18 +168,40 @@ public class PlayerMovement : MonoBehaviour
         if (rewindAction.triggered && Time.time >= lastRewindTime + rewindCooldown)
         {
             Rewind();
+            UIController.Instance.restrictRewind.SetActive(true);
             lastRewindTime = Time.time;
+        }
+
+        if(Time.time >= lastRewindTime + rewindCooldown)
+        {
+            UIController.Instance.restrictRewind.SetActive(false);
         }
 
         if (interactAction.triggered && currentInteractable != null)
         {
             currentInteractable.OnInteract();
         }
-        
-       
+
+        if (playerActions.Player.Pause.triggered)
+        {
+            Debug.Log("Pause Game Triggered");
+
+            if(UIController.Instance != null)
+            {
+                UIController.Instance.PauseGame();
+            }
+            else
+            {
+                Debug.LogWarning("UIController instance not found!");
+            }
+
+            
+            
+        }
+
 
             UpdateRewindGhost();
-      
+   
 
         // Debug cooldown info
         float rewindCooldownRemaining = Mathf.Max(0, (lastRewindTime + rewindCooldown) - Time.time);
@@ -165,18 +214,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        
-        
-
-
-       
-        
+  
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-        
-
-            
-
-
+ 
 
         //isGrounded = false; // Set grounded to false after jumping
 
@@ -189,8 +229,10 @@ public class PlayerMovement : MonoBehaviour
 
     void TimeStop()
     {
+        
         if (isTimeStopped)
         {
+            
             // Cancel time stop early
             TimeStopManager.Instance.ToggleTimeStop();
             isTimeStopped = false;
@@ -198,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Time.time >= lastTimeStop + timeStopCooldown)
         {
+            
             TimeStopManager.Instance.ToggleTimeStop();
             isTimeStopped = true;
             timeStopEndTime = Time.time + TimeStopManager.Instance.timeStopDuration;

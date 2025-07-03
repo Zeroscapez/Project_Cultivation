@@ -42,10 +42,11 @@ public class MovingSpikes : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter called with " + other.name);
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit by spike!");
-            // Add damage logic here (e.g., call a TakeDamage() method)
+            UIController.Instance.TakeDamage(0.1F);
         }
     }
 }

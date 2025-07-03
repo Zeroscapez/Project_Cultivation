@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +34,7 @@ public class ShooterAim : MonoBehaviour
     public Transform armTransform; // Reference to the player's arm transform
     public bool flipWithPlayer = true; // Whether to flip the pointer based on player direction
 
+    public bool reloading = false; // Flag to indicate if reloading is in progress  
 
     private void Awake()
     {
@@ -70,36 +72,59 @@ public class ShooterAim : MonoBehaviour
 
     private void Update()
     {
+
+        if (UIController.IsPaused)
+        {
+
+          
+            return;
+
+        }
+
         aimDirection = mousePos.ReadValue<Vector2>();
         mouseLook = mouseMove.ReadValue<Vector2>();
 
 
-        if (shootAction.triggered && Time.time >= lastFireTime + fireRate)
+        if (shootAction.triggered && Time.time >= lastFireTime + fireRate && (UIController.Instance.ammo > 0))
         {
             Shoot();
-           // Debug.Log("Shot Fired");
+            UIController.Instance.ammo--; // Decrease ammo count
+                                          // Debug.Log("Shot Fired");
             lastFireTime = Time.time;
             MouseResetTime = 6f;
         }
+        else if ( shootAction.triggered && Time.time >= lastFireTime + fireRate && (UIController.Instance.ammo == 0))
+        {
+             Debug.Log("No Ammo to Shoot");
+            
+            if(reloading == false) // If not already reloading
+            {
+                reloading = true; // Set reloading flag to true
+                StartCoroutine(Reload()); // Start reloading if no ammo
+            }
+            
+
+        }
+        
 
         if (mouseLook.x > 0 || mouseLook.x < 0) // If mouse is moved
         {
             Aim(); // Aim the player towards the mouse position
-            UpdateCursorPosition(); 
+            UpdateCursorPosition();
             MouseResetTime = 6f; // Reset the timer when mouse is moved
 
         }
-        else if(mouseLook.x == 0) // If mouse is not moved
+        else if (mouseLook.x == 0) // If mouse is not moved
         {
             MouseResetTime -= Time.deltaTime;
-          
 
-            if(MouseResetTime <= 0 && mouseLook.x == 0)
+
+            if (MouseResetTime <= 0 && mouseLook.x == 0)
             {
                 MouseResetTime = 6f;
                 aimDirection = MouseOrigin;
                 UpdateCursorPosition();
-               // Debug.Log("Mouse Reset to Origin");
+                // Debug.Log("Mouse Reset to Origin");
             }
 
         }
@@ -129,6 +154,15 @@ public class ShooterAim : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator Reload()
+    {
+       
+        yield return new WaitForSeconds(1f); // Simulate reload time
+
+        UIController.Instance.ammo = UIController.Instance.maxAmmo; // Reset ammo to max
+        reloading = false; // Set reloading flag to false
     }
 
     private void Aim() // Aim the player towards the mouse position
