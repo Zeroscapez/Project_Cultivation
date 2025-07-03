@@ -364,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.666667, y: -0.8832598}
+  m_AnchoredPosition: {x: -1.666667, y: -2.5499265}
   m_SizeDelta: {x: 530.6667, y: 239.6667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378259156
@@ -387,12 +387,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-    in culpa qui officia deserunt mollit anim id est laborum
+  m_text: 'You wake up in a compound, not knowing where or who you are. All you have
+    is the clothes on your back, a weapon and powers that feel foreign to you. An
+    intercom gives you a simple task: tag the targets on the course and survive.
+    Without any other options, you comply and get to work.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39e5bd34c42aa464a90b5299e4059af7, type: 2}
   m_sharedMaterial: {fileID: -7662856101357157494, guid: 39e5bd34c42aa464a90b5299e4059af7, type: 2}
@@ -1285,12 +1283,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-    in culpa qui officia deserunt mollit anim id est laborum
+  m_text: 'You wake up in a compound, not knowing where or who you are. All you have
+    is the clothes on your back, a weapon and powers that feel foreign to you. An
+    intercom gives you a simple task: tag the targets on the course and survive.
+    Without any other options, you comply and get to work.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39e5bd34c42aa464a90b5299e4059af7, type: 2}
   m_sharedMaterial: {fileID: -7662856101357157494, guid: 39e5bd34c42aa464a90b5299e4059af7, type: 2}
