@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 2743452104203027524}
   - component: {fileID: 1166488854120964064}
   - component: {fileID: 4094595523167822425}
+  - component: {fileID: 5470069889240490954}
   m_Layer: 0
   m_Name: spikesup
   m_TagString: Untagged
@@ -229,6 +230,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 25.680655, y: 18.215246, z: 0.2}
   m_Center: {x: -0.51169306, y: 8.633059, z: 0}
+--- !u!114 &5470069889240490954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7919395086560120906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5adaf9804ddd4e84a4a8818debfef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8747438237363784937
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,13 +40,23 @@ public class MovingSpikes : MonoBehaviour
         }
     }
 
+    public void HandleTrigger(Collider other)
+    {
+        Debug.Log("Forwarded trigger: " + other.name);
+        if (isSpikeUp && other.CompareTag("Player"))
+        {
+            Debug.Log("Player hit by spike!");
+            UIController.Instance.TakeDamage(0.1f);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("OnTriggerEnter called with " + other.name);
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit by spike!");
-            UIController.Instance.TakeDamage(0.1F);
+            UIController.Instance.TakeDamage(0.15f);
         }
     }
 }
