@@ -90,6 +90,8 @@ public class UIController : MonoBehaviour
 
     public void TakeDamage(float damage)        // Drops health value when taking damage
     {
+        damage *= 0.001f;
+
         if (health > 0)
         {
             health -= damage;
