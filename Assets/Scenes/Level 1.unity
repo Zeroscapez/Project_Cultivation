@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 507792996}
   - component: {fileID: 507792995}
   - component: {fileID: 507792997}
+  - component: {fileID: 507792998}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -686,6 +687,18 @@ MonoBehaviour:
     CameraRadius: 0.2
     DampingIntoCollision: 0
     DampingFromCollision: 0.5
+--- !u!114 &507792998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507792994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &547467863 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 261473401365464853, guid: c1efcfc2fceb6344dbcedb9d0b5e9242, type: 3}
@@ -750,7 +763,8 @@ PrefabInstance:
       value: PlayerTest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8455240237819107846, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fbf2cc2fd7bf3a4d87b00a967f98090, type: 3}
@@ -1680,6 +1694,10 @@ PrefabInstance:
     - target: {fileID: 5517358734750886557, guid: 91e3fda922f1d004fa6acdc78ec9c00f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517358734750886557, guid: 91e3fda922f1d004fa6acdc78ec9c00f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8525754568455575033, guid: 91e3fda922f1d004fa6acdc78ec9c00f, type: 3}
       propertyPath: targetDoor
