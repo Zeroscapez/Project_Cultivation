@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get; private set; }
 
     public float health;
-    public float maxHealth;
+    public float maxHealth = 0.3f;
     public int ammo;
     public int maxAmmo;
 
@@ -48,22 +48,21 @@ public class UIController : MonoBehaviour
         // Initialize the Input System Actions
         UIControl = new InputSystem_Actions();
         UIControl.UI.Disable();
+        
     }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        maxHealth = 0.3f;
-        health = maxHealth;
-        maxAmmo = 5;
-        ammo = maxAmmo;
-        pauseMenu.SetActive(false);
-        restrictRewind.SetActive(false);
-        restrictPause.SetActive(false);
-        restrictFastForward.SetActive(false);
-       
+       Reset(); // Reset health and ammo values at the start
 
+
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        Reset(); // Reset health and ammo values at the start
     }
 
     // Update is called once per frame
@@ -105,7 +104,10 @@ public class UIController : MonoBehaviour
 
         if (health <= 0)
         {
+             
             GameOver();
+            GoTitle();
+           
         }
     }
 
@@ -200,10 +202,23 @@ public class UIController : MonoBehaviour
         Application.Quit();
     }
 
+    public void Reset()
+    {
+        maxHealth = 0.3f;
+        health = maxHealth;
+        maxAmmo = 5;
+        ammo = maxAmmo;
+        pauseMenu.SetActive(false);
+        restrictRewind.SetActive(false);
+        restrictPause.SetActive(false);
+        restrictFastForward.SetActive(false);
+    }
+
     public void GoTitle()
     {
         UIControl.Player.Disable();
         SceneManager.LoadScene("TitleScreen");
+        
     }
 
 }

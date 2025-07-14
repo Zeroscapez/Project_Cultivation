@@ -195,7 +195,7 @@ public class ShooterAim : MonoBehaviour
      new Vector3(aimDirection.x, aimDirection.y, Camera.main.transform.position.z * -1f)
  );
 
-        worldPos.z = 0; // Lock it to the same plane as the player
+        worldPos.z = -0.22f; // Lock it to the same plane as the player
 
         
 

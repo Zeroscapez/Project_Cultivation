@@ -7,11 +7,14 @@ public class DoorSwitchTouch : InteractableObject, ISwitch
     public DoorControl linkedDoor;
     public bool IsActivated => isActivated;
 
+    public AudioSource activationSound;
+
     private Renderer objectRenderera;
 
     void Start()
     {
         objectRenderera = this.gameObject.GetComponent<Renderer>();
+        activationSound = GetComponent<AudioSource>();
     }
     public override void OnInteract()
     {
@@ -27,8 +30,8 @@ public class DoorSwitchTouch : InteractableObject, ISwitch
             {
                 interactIcon.SetActive(false);
             }
-                
-           
+            activationSound?.Play();
+
 
 
             linkedDoor.NotifySwitchActivated();

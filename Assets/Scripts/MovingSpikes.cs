@@ -46,7 +46,7 @@ public class MovingSpikes : MonoBehaviour
         if (isSpikeUp && other.CompareTag("Player"))
         {
             Debug.Log("Player hit by spike!");
-            UIController.Instance.TakeDamage(0.1f);
+            UIController.Instance.TakeDamage(0.35f);
         }
     }
 
@@ -56,7 +56,7 @@ public class MovingSpikes : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit by spike!");
-            UIController.Instance.TakeDamage(15f);
+            
         }
     }
 }

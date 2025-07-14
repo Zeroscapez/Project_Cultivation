@@ -12,6 +12,8 @@ public abstract class ShootSwitchControl : MonoBehaviour, ITarget
 
     public bool activated = false;
 
+    public AudioSource activationSound;
+
     public DoorControl linkedDoor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +23,8 @@ public abstract class ShootSwitchControl : MonoBehaviour, ITarget
         {
             originalMaterial = objectRenderer.material;
         }
+
+        activationSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,7 +51,8 @@ public abstract class ShootSwitchControl : MonoBehaviour, ITarget
                     objectRenderer.material = strikeMaterial;
                 }
 
-               // Debug.Log("Object Hit with Bullet - " + gameObject.name);
+                activationSound?.Play();
+                // Debug.Log("Object Hit with Bullet - " + gameObject.name);
 
                 if (linkedDoor != null)
                 {
