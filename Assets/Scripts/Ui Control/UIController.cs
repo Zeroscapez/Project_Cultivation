@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     public float maxHealth = 0.3f;
     public int ammo;
     public int maxAmmo;
+    public int lives = 3;
 
     public bool canRewind;
     public bool canPause;
@@ -22,12 +23,14 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI rewindCooldown;
     public TextMeshProUGUI pauseCooldown;
     public TextMeshProUGUI fastForwardCooldown;
+    public TextMeshProUGUI livesCount;
     public GameObject restrictRewind;
     public GameObject restrictPause;
     public GameObject restrictFastForward;
     public GameObject pauseMenu;
     public InputSystem_Actions UIControl;
     public InputSystem_Actions PlayerControl;
+    public GameObject player;
 
     public static bool IsPaused { get; private set; } = false;
 
@@ -55,7 +58,8 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       Reset(); // Reset health and ammo values at the start
+        player = GameObject.FindGameObjectWithTag("Player");
+        Reset(); // Reset health and ammo values at the start
 
 
     }
@@ -68,7 +72,14 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        Debug.Log(player.GetComponent<PlayerMovement>().startPoint);
         ammoCount.SetText(ammo.ToString());     // Updates ammo count to match internal value
+        
         hpBar.fillAmount = health;              // Updates health bar to match internal value
         if (health <= 0)                        // Prevents health from being negative
         {
@@ -89,6 +100,8 @@ public class UIController : MonoBehaviour
         {
             ammo = maxAmmo;
         }
+
+        
     }
 
     public void TakeDamage(float damage)        // Drops health value when taking damage
@@ -104,10 +117,14 @@ public class UIController : MonoBehaviour
 
         if (health <= 0)
         {
-             
-            GameOver();
-            GoTitle();
-           
+            if (lives <= 0) // Check if lives are zero
+            {
+                GoTitle(); // Call GameOver method if no lives left
+            }
+            
+
+            Die();
+            health = maxHealth; // Reset health to maxHealth for next life
         }
     }
 
@@ -140,7 +157,16 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void GameOver()                      // Enables game over screen
+    public void Die()
+    {
+        
+        player.transform.position = player.GetComponent<PlayerMovement>().startPoint; // Respawn player at start point
+        lives -= 1; // Decrease lives when health reaches zero
+        livesCount.SetText(lives.ToString("00"));     // Updates lives count to match internal value
+        health = maxHealth; // Reset health to maxHealth for next life
+
+    }
+    public void GameOver()   // Enables game over screen
     {
         // add game over screen here
     }
@@ -212,6 +238,7 @@ public class UIController : MonoBehaviour
         restrictRewind.SetActive(false);
         restrictPause.SetActive(false);
         restrictFastForward.SetActive(false);
+        lives = 3;
     }
 
     public void GoTitle()

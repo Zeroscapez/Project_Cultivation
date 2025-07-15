@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of the player movement
     public float jumpSpeed = 7f; // Speed of the player jump
+    public Vector3 startPoint; // Starting point for the player
 
 
 
@@ -68,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
         rewindAction = playerActions.Player.Rewind;
         interactAction = playerActions.Player.Interact;
         slowTimeAction = playerActions.Player.SlowDown;
-        
     }
 
     private void OnEnable()
@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
         TimeStopManager.Instance.timeStopDuration = this.timeStopDuration;
         rewindGhost = Instantiate(rewindPrefab).transform; // Instantiate the rewind ghost prefab
+        startPoint = transform.position; // Set the starting point to the player's initial position
     }
 
     // Update is called once per frame
